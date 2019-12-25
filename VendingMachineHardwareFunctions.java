@@ -1,3 +1,5 @@
+package carrier_direct_assessment;
+
 /**
 * This interface is intended to abstract the interaction with the
 vending machine's user interface.
@@ -12,24 +14,17 @@ stock.
 interface VendingMachineHardwareFunctions {
 
 default void showMessage(String message) {
-System.out.println(message);
+    System.out.println(message);
 }
 
 
-default void dispenseProduct(Integer productPosition, String
-productName) {
-String nullSafeProductName = (productName != null) ? productName
-
-: "ProductNum" + productPosition;
-
-System.out.println("Dispensing " + nullSafeProductName + " from
-
-position " + productPosition);
-
+default void dispenseProduct(Integer productPosition, String productName) {
+    String nullSafeProductName = (productName != null) ? productName : "ProductNum" + productPosition;
+    System.out.println("Dispensing " + nullSafeProductName + " from position " + productPosition);
 }
     
 default void dispenseChange(Integer changeInCents) {
-System.out.println("Dispensing " + changeInCents + " cents");
+    System.out.println("Dispensing " + changeInCents + " cents");
 }
     
 }
