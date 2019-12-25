@@ -1,2 +1,5 @@
+java:
+	javac -d .  *.java
+
 clean:
-	rm *~
+	rm *~ *.class
