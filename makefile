@@ -5,11 +5,11 @@ compile:
 	javac -d .  *.java
 
 
-run:
+run:	compile
 	java vending_machine_solution.Machine
 
 
-test:
+test:	compile
 	java vending_machine_solution.Testing
 
 

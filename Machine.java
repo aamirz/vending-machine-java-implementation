@@ -30,7 +30,7 @@ public class Machine implements VendingMachineHardwareFunctions,
         Product product = machine.get(productPosition);
         // the user gives an invalid position - we just display a default.
         if (product == null) {
-            showMessage("Invalid product position entered. There is no product at this position.");
+            showMessage("Invalid product position entered. There is no product at position " + productPosition + ".");
             return;
         }
 
@@ -38,6 +38,7 @@ public class Machine implements VendingMachineHardwareFunctions,
 
         if (quantity <= 0) {
             showMessage("We are out of " + product.getName() + ". We apologize for the inconvenience.");
+            return;
         }
 
         Integer price = product.getPrice();
@@ -83,8 +84,20 @@ public class Machine implements VendingMachineHardwareFunctions,
             dispenseChange(cents);
             return;
         }
-        
+
         currentBalance += cents;
+        showMessage("Added " + cents + " cents to your balance. Total so far is " + currentBalance + ".");
+    }
+
+    public void returnUserMoney() {
+        // returns all change to the user
+        // does not mimick real life as we dispense all change
+        // in one go
+        if (currentBalance > 0) {
+            showMessage("Returning all of your funds.");
+            dispenseChange(currentBalance);
+            currentBalance = 0;
+        }
     }
 
     /**
