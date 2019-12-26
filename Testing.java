@@ -109,8 +109,12 @@ public class Testing {
     public static void main(String[] args) {
         System.out.println("Testing vending machine...");
         Testing testing = new Testing();
-        // testing.testEmptyMachine();
-        // testing.testSingleProductMachine();
+
+        System.out.println("\n\nRunning empty machine tests!\n\n");
+        testing.testEmptyMachine();
+        System.out.println("\n\nRunning single product machine tests!\n\n");
+        testing.testSingleProductMachine();
+        System.out.println("\n\nRunning multi-product stocked machine tests!\n\n");
         testing.testMultiProductMachine();
     }
 

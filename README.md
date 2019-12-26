@@ -2,8 +2,9 @@
 ## Vending Machine : Java Implementation
 
 The supplied makefile contains all the instructions for compiling this solution and running tests.
+Most of the magic happens in Machine.java (which implements the VendingMachine interfaces).
 
-To compile you can run:
+To compile you can issue:
 
 ```
 $ make
@@ -15,7 +16,7 @@ or
 $ make compile
 ```
 
-To run tests you can run:
+To run tests you can issue:
 
 ```
 $ make test

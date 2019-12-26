@@ -27,6 +27,8 @@ public class Machine implements VendingMachineHardwareFunctions,
      * checking and purchasing.
      **/
     public void buttonPress(Integer productPosition) {
+        showMessage("Patron has pressed button for position " + productPosition);
+        
         Product product = machine.get(productPosition);
         // the user gives an invalid position - we just display a default.
         if (product == null) {
@@ -59,11 +61,6 @@ public class Machine implements VendingMachineHardwareFunctions,
             updateBalanceAndInventory(product, quantity - 1);
         }
     }
-
-    private void updateBalanceAndInventory(Product product, Integer newQuantity) {
-        product.setQuantity(newQuantity);
-        currentBalance = 0;
-    }
     
 
     /**
@@ -77,6 +74,7 @@ public class Machine implements VendingMachineHardwareFunctions,
      * and Quarters will be added.
      **/
     public void addUserMoney(Integer cents) {
+        showMessage("Patron is adding " + cents + " cents.");
         // if an invalid amount is added, return the user's change to them
         if (!validateMoney(cents)) {
             showMessage("Invalid denomination added, this machine only accept Nickels, Dimes, and Quarters." +
@@ -84,17 +82,18 @@ public class Machine implements VendingMachineHardwareFunctions,
             dispenseChange(cents);
             return;
         }
-
+        
         currentBalance += cents;
         showMessage("Added " + cents + " cents to your balance. Total so far is " + currentBalance + ".");
     }
 
     public void returnUserMoney() {
+        showMessage("Patron is requesting a return of funds.");
         // returns all change to the user
         // does not mimick real life as we dispense all change
         // in one go
         if (currentBalance > 0) {
-            showMessage("Returning all of your funds.");
+            showMessage("Vending machine is returning all of your funds.");
             dispenseChange(currentBalance);
             currentBalance = 0;
         }
@@ -111,8 +110,10 @@ public class Machine implements VendingMachineHardwareFunctions,
             throw new IllegalArgumentException("This position " + position + " is already occupied with product!");
         }
 
+
         Product product = new Product(name, price, 0);
         machine.put(position, product);
+        showMessage("Administrator is adding a new product at position " + position + " - " + product.toString());
     }
 
     /**
@@ -132,6 +133,7 @@ public class Machine implements VendingMachineHardwareFunctions,
             throw new IllegalArgumentException("Please add a non zero amount of inventory");
         }
 
+        showMessage("Administrator is adding " + quantity + " units to " + product.toString());
         Integer newQuantity = product.getQuantity() + quantity;
         product.setQuantity(newQuantity);
 
@@ -143,6 +145,11 @@ public class Machine implements VendingMachineHardwareFunctions,
         return inputMoney != null && (inputMoney == NICKEL_VALUE ||
                                       inputMoney == DIME_VALUE ||
                                       inputMoney == QUARTER_VALUE);
+    }
+
+    private void updateBalanceAndInventory(Product product, Integer newQuantity) {
+        product.setQuantity(newQuantity);
+        currentBalance = 0;
     }
 
     
