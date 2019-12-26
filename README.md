@@ -4,13 +4,18 @@ The supplied makefile contains all the instructions for compiling this solution 
 
 To compile you can run:
 
+```
 > make
+```
 
 or
 
+```
 > make compile
+```
 
 To run tests you can run:
 
+```
 > make test
-
+```
