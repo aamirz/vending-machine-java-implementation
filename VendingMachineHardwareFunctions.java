@@ -1,4 +1,4 @@
-package carrier_direct_assessment;
+package vending_machine_solution;
 
 /**
 * This interface is intended to abstract the interaction with the
